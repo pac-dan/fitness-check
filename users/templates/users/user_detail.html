@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ user.username }}</h1>
+  <p>Email: {{ user.email }}</p>
+  {% if user.bio %}
+    <p>Bio: {{ user.bio }}</p>
+  {% endif %}
+  <a href="{% url 'users:user_update' user.pk %}">Edit</a> |
+  <a href="{% url 'users:user_delete' user.pk %}">Delete</a> |
+  <a href="{% url 'users:user_list' %}">Back to List</a>
+{% endblock %}

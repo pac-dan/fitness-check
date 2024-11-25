@@ -37,6 +37,8 @@ ALLOWED_HOSTS = [
     'localhost',
 ]   
 
+SITE_ID = 1
+
 
 # Application definition
 
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # Required for django-allauth
 
     # Third-party apps
     'rest_framework.authtoken',       # Django REST Framework Token Authentication
@@ -73,17 +76,17 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # Should be near the top
+    'corsheaders.middleware.CorsMiddleware',  # CORS
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # If using WhiteNoise
+    'whitenoise.middleware.WhiteNoiseMiddleware',  #WhiteNoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'allauth.account.middleware.AccountMiddleware',  # Added Allauth AccountMiddleware
+    'allauth.account.middleware.AccountMiddleware',  # django-allauth
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',  # If using Debug Toolbar
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # Django Debug Toolbar
 ]
 
 ROOT_URLCONF = 'fitness_tracker.urls'
@@ -106,6 +109,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fitness_tracker.wsgi.application'
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -183,4 +187,3 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
-AUTH_USER_MODEL = 'users.CustomUser'

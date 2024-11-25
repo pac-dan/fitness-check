@@ -19,4 +19,12 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+    path('', include('users.urls')),
+    path('', include('goals.urls')),
+    path('', include('workouts.urls')),
+    path('', include('notifications.urls')),
+    path('', include('nutrition.urls')),
+    path('', include('progress.urls')),
+    path('', include('wearables.urls')),
 ]

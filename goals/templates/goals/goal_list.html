@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Your Goals</h1>
+  <a href="{% url 'goals:goal_create' %}">Create New Goal</a>
+  <ul>
+    {% for goal in goals %}
+      <li>
+        <a href="{% url 'goals:goal_detail' goal.pk %}">{{ goal.title }}</a>
+      </li>
+    {% empty %}
+      <li>No goals available.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

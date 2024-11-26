@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ goal.title }}</h1>
+  <p>Description: {{ goal.description }}</p>
+  <p>Target: {{ goal.target }}</p>
+  <p>Achieved: {{ goal.achieved }}</p>
+  <p>Created At: {{ goal.created_at }}</p>
+  <p>Updated At: {{ goal.updated_at }}</p>
+  <a href="{% url 'goals:goal_update' goal.pk %}">Edit</a> |
+  <a href="{% url 'goals:goal_delete' goal.pk %}">Delete</a> |
+  <a href="{% url 'goals:goal_list' %}">Back to List</a>
+{% endblock %}

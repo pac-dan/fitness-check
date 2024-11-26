@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Your Progress Entries</h1>
+  <a href="{% url 'progress:progress_create' %}">Add New Entry</a>
+  <ul>
+    {% for entry in progress_entries %}
+      <li>
+        <a href="{% url 'progress:progress_detail' entry.pk %}">
+          {{ entry.date }} - Weight: {{ entry.weight }}kg
+        </a>
+      </li>
+    {% empty %}
+      <li>No progress entries available.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

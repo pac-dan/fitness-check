@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Progress on {{ progress_entry.date }}</h1>
+  <p><strong>Weight:</strong> {{ progress_entry.weight }} kg</p>
+  <p><strong>Body Fat Percentage:</strong> {{ progress_entry.body_fat_percentage }}%</p>
+  {% if progress_entry.muscle_mass %}
+    <p><strong>Muscle Mass:</strong> {{ progress_entry.muscle_mass }} kg</p>
+  {% endif %}
+  {% if progress_entry.notes %}
+    <p><strong>Notes:</strong> {{ progress_entry.notes }}</p>
+  {% endif %}
+  <p><strong>Created At:</strong> {{ progress_entry.created_at }}</p>
+  <p><strong>Updated At:</strong> {{ progress_entry.updated_at }}</p>
+  <a href="{% url 'progress:progress_update' progress_entry.pk %}">Edit</a> |
+  <a href="{% url 'progress:progress_delete' progress_entry.pk %}">Delete</a> |
+  <a href="{% url 'progress:progress_list' %}">Back to List</a>
+{% endblock %}

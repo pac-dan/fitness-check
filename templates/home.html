@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Welcome to Fitness Tracker</h1>
+  <p>Your journey to a healthier life starts here!</p>
+  <ul>
+    <li><a href="{% url 'users:user_list' %}">Users</a></li>
+    <li><a href="{% url 'goals:goal_list' %}">Goals</a></li>
+    <li><a href="{% url 'workouts:workout_list' %}">Workouts</a></li>
+    <li><a href="{% url 'notifications:notification_list' %}">Notifications</a></li>
+    <li><a href="{% url 'nutrition:nutrition_list' %}">Nutrition</a></li>
+    <li><a href="{% url 'progress:progress_list' %}">Progress</a></li>
+    <li><a href="{% url 'wearables:wearable_list' %}">Wearables</a></li>
+  </ul>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ nutrition_entry.meal_type.capitalize }} on {{ nutrition_entry.date }}</h1>
+  <p><strong>Food Items:</strong> {{ nutrition_entry.food_items }}</p>
+  <p><strong>Calories:</strong> {{ nutrition_entry.calories }}</p>
+  <p><strong>Protein:</strong> {{ nutrition_entry.protein }}g</p>
+  <p><strong>Carbohydrates:</strong> {{ nutrition_entry.carbs }}g</p>
+  <p><strong>Fats:</strong> {{ nutrition_entry.fats }}g</p>
+  {% if nutrition_entry.notes %}
+    <p><strong>Notes:</strong> {{ nutrition_entry.notes }}</p>
+  {% endif %}
+  <p><strong>Created At:</strong> {{ nutrition_entry.created_at }}</p>
+  <p><strong>Updated At:</strong> {{ nutrition_entry.updated_at }}</p>
+  <a href="{% url 'nutrition:nutrition_update' nutrition_entry.pk %}">Edit</a> |
+  <a href="{% url 'nutrition:nutrition_delete' nutrition_entry.pk %}">Delete</a> |
+  <a href="{% url 'nutrition:nutrition_list' %}">Back to List</a>
+{% endblock %}

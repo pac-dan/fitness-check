@@ -24,9 +24,7 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('goals/', include('goals.urls', namespace='goals')),
     path('workouts/', include('workouts.urls', namespace='workouts')),
-    path('notifications/', include('notifications.urls', namespace='notifications')),
     path('nutrition/', include('nutrition.urls', namespace='nutrition')),
     path('progress/', include('progress.urls', namespace='progress')),
-    path('wearables/', include('wearables.urls', namespace='wearables')),
     path('', views.home, name='home'),
 ]

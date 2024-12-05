@@ -73,8 +73,6 @@ INSTALLED_APPS = [
     'progress.apps.ProgressConfig',
     'goals.apps.GoalsConfig',
     'nutrition.apps.NutritionConfig',
-    'notifications.apps.NotificationsConfig',
-    'wearables.apps.WearablesConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Workout
+from .forms import WorkoutForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 class WorkoutListView(LoginRequiredMixin, ListView):
@@ -22,7 +23,7 @@ class WorkoutDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
 class WorkoutCreateView(LoginRequiredMixin, CreateView):
     model = Workout
-    fields = ['name', 'description', 'duration', 'calories_burned']
+    form_class = WorkoutForm
     template_name = 'workouts/workout_form.html'
     success_url = reverse_lazy('workouts:workout_list')
 
@@ -32,7 +33,7 @@ class WorkoutCreateView(LoginRequiredMixin, CreateView):
 
 class WorkoutUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Workout
-    fields = ['name', 'description', 'duration', 'calories_burned']
+    form_class = WorkoutForm
     template_name = 'workouts/workout_form.html'
     success_url = reverse_lazy('workouts:workout_list')
 

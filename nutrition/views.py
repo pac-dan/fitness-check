@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Nutrition
+from .forms import NutritionForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 class NutritionListView(LoginRequiredMixin, ListView):
@@ -22,7 +23,7 @@ class NutritionDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
 class NutritionCreateView(LoginRequiredMixin, CreateView):
     model = Nutrition
-    fields = ['meal_type', 'food_items', 'calories', 'protein', 'carbs', 'fats', 'notes']
+    form_class = NutritionForm
     template_name = 'nutrition/nutrition_form.html'
     success_url = reverse_lazy('nutrition:nutrition_list')
 
@@ -32,7 +33,7 @@ class NutritionCreateView(LoginRequiredMixin, CreateView):
 
 class NutritionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Nutrition
-    fields = ['meal_type', 'food_items', 'calories', 'protein', 'carbs', 'fats', 'notes']
+    form_class = NutritionForm
     template_name = 'nutrition/nutrition_form.html'
     success_url = reverse_lazy('nutrition:nutrition_list')
 

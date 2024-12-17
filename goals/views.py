@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Goal
+from .forms import GoalForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 class GoalListView(LoginRequiredMixin, ListView):
@@ -22,7 +23,7 @@ class GoalDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
 class GoalCreateView(LoginRequiredMixin, CreateView):
     model = Goal
-    fields = ['title', 'description', 'target']
+    form_class = GoalForm
     template_name = 'goals/goal_form.html'
     success_url = reverse_lazy('goals:goal_list')
 
@@ -32,7 +33,7 @@ class GoalCreateView(LoginRequiredMixin, CreateView):
 
 class GoalUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Goal
-    fields = ['title', 'description', 'target']
+    form_class = GoalForm
     template_name = 'goals/goal_form.html'
     success_url = reverse_lazy('goals:goal_list')
 

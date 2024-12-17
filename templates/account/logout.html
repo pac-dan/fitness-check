@@ -1,0 +1,9 @@
+{% extends "auth_base.html" %}
+{% block auth_content %}
+<h1>Are you sure you want to logout?</h1>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Yes, Logout</button>
+</form>
+<a href="{% url 'users:profile' %}">Cancel</a>
+{% endblock %}

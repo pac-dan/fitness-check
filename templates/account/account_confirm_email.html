@@ -1,0 +1,7 @@
+{% extends "auth_base.html" %}
+
+{% block auth_content %}
+<h1>Email Confirmation</h1>
+<p>Your email address has been successfully confirmed!</p>
+<a href="{% url 'users:profile' %}">Go to Your Profile</a>
+{% endblock %}

@@ -40,7 +40,6 @@ ALLOWED_HOSTS = [
 
 SITE_ID = 1
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -183,7 +182,24 @@ REST_FRAMEWORK = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Django Crispy Forms settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+
+# django-allauth settings
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT_URL = 'users:profile'
+
+ACCOUNT_LOGIN_REDIRECT_URL = 'users:profile'
+
+
+
 

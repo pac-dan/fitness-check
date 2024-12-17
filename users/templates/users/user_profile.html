@@ -1,0 +1,45 @@
+{% extends "auth_base.html" %}
+{% block auth_content %}
+<h1>Welcome, {{ user.username }}!</h1>
+
+{% comment %} user data {% endcomment %}
+<h2>Your Recent Workouts</h2>
+{% if workouts %}
+  <ul>
+    {% for workout in workouts %}
+      <li>{{ workout.name }} - {{ workout.duration }} min</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'workouts:workout_list' %}">View All Workouts</a>
+{% else %}
+  <p>No workouts logged yet.</p>
+{% endif %}
+
+<h2>Your Goals</h2>
+{% if goals %}
+  <ul>
+    {% for goal in goals %}
+      <li>{{ goal.title }} - Target: {{ goal.target }}</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'goals:goal_list' %}">View All Goals</a>
+{% else %}
+  <p>No goals set yet.</p>
+{% endif %}
+
+<h2>Your Recent Nutrition Entries</h2>
+{% if nutrition_entries %}
+  <ul>
+    {% for entry in nutrition_entries %}
+      <li>{{ entry.meal_type }} - {{ entry.food_items }} ({{ entry.calories }} calories)</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'nutrition:nutrition_list' %}">View All Nutrition Entries</a>
+{% else %}
+  <p>No nutrition entries recorded yet.</p>
+{% endif %}
+<div>
+<a href="{% url 'users:user_update' user.pk %}" class="btn btn-primary">Edit</a>
+<a href="{% url 'account_logout' %}" class="btn btn-secondary">Logout</a>
+</div>
+{% endblock %}

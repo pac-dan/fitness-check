@@ -4,6 +4,9 @@ from django.urls import reverse_lazy
 from .models import CustomUser
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from workouts.models import Workout
+from goals.models import Goal
+from nutrition.models import Nutrition
 
 class UserListView(ListView):
     model = CustomUser
@@ -34,4 +37,17 @@ class UserDeleteView(DeleteView):
 
 @login_required
 def profile(request):
-    return render(request, 'users/user_profile.html')
+    user = request.user
+
+    #fetch the users data
+    workouts = Workout.objects.filter(user=user).order_by('-id')[:5]
+    goals = Goal.objects.filter(user=user).order_by('-id')[:5]  
+    nutrition_entries = Nutrition.objects.filter(user=user).order_by('-id')[:5]
+
+    context = {
+        'workouts':workouts,
+        'goals':goals,
+        'nutrition_entries':nutrition_entries
+    }
+
+    return render(request, 'users/user_profile.html', context)

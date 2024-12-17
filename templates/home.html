@@ -1,13 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Welcome to Fitness Tracker</h1>
-  <p>Your journey to a healthier life starts here!</p>
-  <ul>
-    <li><a href="{% url 'users:user_list' %}">Users</a></li>
-    <li><a href="{% url 'goals:goal_list' %}">Goals</a></li>
-    <li><a href="{% url 'workouts:workout_list' %}">Workouts</a></li>
-    <li><a href="{% url 'nutrition:nutrition_list' %}">Nutrition</a></li>
-    <li><a href="{% url 'progress:progress_list' %}">Progress</a></li>
-  </ul>
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Welcome to Fitness Tracker</h1>
+        <p class="lead">Your journey to a healthier life starts here!</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="static\images\goals-image.jpeg" class="card-img-top" alt="Goals Image">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Goals</h5>
+                    <p class="card-text">Set and track your fitness goals to stay motivated.</p>
+                    <a href="/goals/" class="btn btn-primary mt-auto">View Goals</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="static\images\workouts-image.jpeg" class="card-img-top" alt="Workouts Image">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Workouts</h5>
+                    <p class="card-text">Log your workouts and monitor your progress.</p>
+                    <a href="/workouts/" class="btn btn-primary mt-auto">View Workouts</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="static\images\nutrition-image.jpeg" class="card-img-top" alt="Nutrition Image">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Nutrition</h5>
+                    <p class="card-text">Track your nutrition to complement your fitness regimen.</p>
+                    <a href="/nutrition/" class="btn btn-primary mt-auto">View Nutrition</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
 {% endblock %}

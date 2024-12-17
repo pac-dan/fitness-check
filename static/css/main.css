@@ -1,12 +1,14 @@
+/* Basic Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #FFEBE7;
 }
 
+/* Header and NavBar */
 header {
-    background-color: #333;
+    background-color: #127475;
     color: #fff;
     padding: 10px 0;
 }
@@ -22,19 +24,79 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #FFEBE7;
     text-decoration: none;
     font-weight: bold;
 }
 
-main {
-    padding: 20px 20px 80px 20px;
-    min-height: 80vh;
+/* Main Styles */
+main {    
+    min-height: 100vh;       
+    margin: 0 auto;          
+    width: 100%;             
+    background: #fff;
+    padding: 20px;
+    padding-bottom: 100px; 
+    border-radius: 5px;
 }
 
-footer {
-    background-color: #333;
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+h1 {
+    text-align: center;
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adds uniform spacing between elements */
+    max-width: 300px; /* Limit form width for neat alignment */
+    margin: 0 auto;   /* Center the form horizontally */
+}
+
+.auth-container form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.auth-container form input[type="text"],
+.auth-container form input[type="email"],
+.auth-container form input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.auth-container form button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background: #007BFF;
     color: #fff;
+    cursor: pointer;
+}
+
+.auth-container form button:hover {
+    background: #0056b3;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #127475;
+    color: #FFEBE7;
     text-align: center;
     padding: 10px 0;
     position: fixed;

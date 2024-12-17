@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>Your Nutrition Entries</h1>
-  <a href="{% url 'nutrition:nutrition_create' %}">Add New Entry</a>
+  <a href="{% url 'nutrition:nutrition_create' %}" class="btn btn-primary">Add New Entry</a>
   <ul>
     {% for entry in nutrition_entries %}
       <li>
@@ -14,5 +14,5 @@
       <li>No nutrition entries available.</li>
     {% endfor %}
   </ul>
-  <p><a href="{% url 'home' %}">Back</a></p>
+  <p><a href="{% url 'home' %}" class="btn btn-secondary">Back</a></p>
 {% endblock %}

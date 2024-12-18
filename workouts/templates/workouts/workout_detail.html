@@ -1,13 +1,29 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
-  <h1>{{ workout.name }}</h1>
-  <p>Description: {{ workout.description }}</p>
-  <p>Duration: {{ workout.duration }} minutes</p>
-  <p>Calories Burned: {{ workout.calories_burned }}</p>
-  <p>Created At: {{ workout.created_at }}</p>
-  <p>Updated At: {{ workout.updated_at }}</p>
-  <a href="{% url 'workouts:workout_update' workout.pk %}">Edit</a> |
-  <a href="{% url 'workouts:workout_delete' workout.pk %}">Delete</a> |
-  <a href="{% url 'workouts:workout_list' %}">Back to List</a>
+<main class="container mt-4 mb-4">
+  <div class="row justify-content-center align-items-center" style="min-height: 80vh;">
+    <!-- Workout Details Section -->
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h1 class="card-title mb-4">{{ workout.name }}</h1>
+          <p class="card-text"><strong>Description:</strong> {{ workout.description|default:"No description provided." }}</p>
+          <p class="card-text"><strong>Duration:</strong> {{ workout.duration }} minutes</p>
+          <p class="card-text"><strong>Calories Burned:</strong> {{ workout.calories_burned }}</p>
+          <p class="card-text"><strong>Created At:</strong> {{ workout.created_at|date:"F j, Y, g:i a" }}</p>
+          <p class="card-text"><strong>Updated At:</strong> {{ workout.updated_at|date:"F j, Y, g:i a" }}</p>
+          
+          <!-- Action Buttons -->
+          <div class="mt-4">
+            <a href="{% url 'workouts:workout_update' workout.pk %}" class="btn btn-warning me-2">Edit</a>
+            <a href="{% url 'workouts:workout_delete' workout.pk %}" class="btn btn-danger me-2">Delete</a>
+            <a href="{% url 'workouts:workout_list' %}" class="btn btn-secondary">Back to List</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
 {% endblock %}
+

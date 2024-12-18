@@ -1,16 +1,39 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
-  <h1>Your Workouts</h1>
-  <a href="{% url 'workouts:workout_create' %}" class="btn btn-primary">Create New Workout</a>
-  <ul>
-    {% for workout in workouts %}
-      <li>
-        <a href="{% url 'workouts:workout_detail' workout.pk %}">{{ workout.name }}</a>
-      </li>
-    {% empty %}
-      <li>No workouts available.</li>
-    {% endfor %}
-  </ul>
-  <p><a href="{% url 'home' %}" class="btn btn-secondary">Back</a></p>
+<main class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="mb-3">Your Workouts</h1>
+      <p class="text-muted">Keep track of your workouts and see your progress grow!</p>
+      <a href="{% url 'workouts:workout_create' %}" class="btn btn-primary mb-3">Create New Workout</a>
+      
+      {% if workouts %}
+        <ul class="list-group">
+          {% for workout in workouts %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <a href="{% url 'workouts:workout_detail' workout.pk %}" class="text-decoration-none">
+                {{ workout.name }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="alert alert-info mt-3">No workouts available.</div>
+      {% endif %}
+      
+      <p class="mt-4"><a href="{% url 'home' %}" class="btn btn-secondary">Back</a></p>
+    </div>
+    
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <img src="{% static 'images\workouts1_motivational.webp' %}" alt="Motivation" class="img-fluid mb-3" style="height: 300px;">
+        <blockquote class="blockquote">
+          <p>"Push yourself, because no one else is going to do it for you."</p>
+          <footer class="blockquote-footer">Anonymous</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</main>
 {% endblock %}

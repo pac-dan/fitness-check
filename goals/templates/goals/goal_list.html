@@ -1,16 +1,39 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
-  <h1>Your Goals</h1>
-  <a href="{% url 'goals:goal_create' %}" class="btn btn-primary">Create New Goal</a>
-  <ul>
-    {% for goal in goals %}
-      <li>
-        <a href="{% url 'goals:goal_detail' goal.pk %}">{{ goal.title }}</a>
-      </li>
-    {% empty %}
-      <li>No goals available.</li>
-    {% endfor %}
-  </ul>
-  <p><a href="{% url 'home' %}" class="btn btn-secondary">Back</a></p>
+<main class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="mb-3">Your Goals</h1>
+      <p class="text-muted">Set your targets and challenge yourself to achieve them!</p>
+      <a href="{% url 'goals:goal_create' %}" class="btn btn-primary mb-3">Create New Goal</a>
+      
+      {% if goals %}
+        <ul class="list-group">
+          {% for goal in goals %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <a href="{% url 'goals:goal_detail' goal.pk %}" class="text-decoration-none">
+                {{ goal.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="alert alert-info mt-3">No goals available.</div>
+      {% endif %}
+      
+      <p class="mt-4"><a href="{% url 'home' %}" class="btn btn-secondary">Back</a></p>
+    </div>
+    
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <img src="{% static 'images/goals_motivational.webp' %}" alt="Motivation" class="img-fluid mb-3">
+        <blockquote class="blockquote">
+          <p>"Setting goals is the first step in turning the invisible into the visible."</p>
+          <footer class="blockquote-footer">Tony Robbins</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</main>
 {% endblock %}

@@ -1,18 +1,39 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
-  <h1>Your Nutrition Entries</h1>
-  <a href="{% url 'nutrition:nutrition_create' %}" class="btn btn-primary">Add New Entry</a>
-  <ul>
-    {% for entry in nutrition_entries %}
-      <li>
-        <a href="{% url 'nutrition:nutrition_detail' entry.pk %}">
-          {{ entry.meal_type.capitalize }} on {{ entry.date }}
-        </a>
-      </li>
-    {% empty %}
-      <li>No nutrition entries available.</li>
-    {% endfor %}
-  </ul>
-  <p><a href="{% url 'home' %}" class="btn btn-secondary">Back</a></p>
+<main class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="mb-3">Your Nutrition Entries</h1>
+      <p class="text-muted">Nourish your body and track what fuels you best!</p>
+      <a href="{% url 'nutrition:nutrition_create' %}" class="btn btn-primary mb-3">Add New Entry</a>
+      
+      {% if nutrition_entries %}
+        <ul class="list-group">
+          {% for entry in nutrition_entries %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <a href="{% url 'nutrition:nutrition_detail' entry.pk %}" class="text-decoration-none">
+                {{ entry.meal_type|capfirst }}{{ entry.date|date:" on F j, Y" }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="alert alert-info mt-3">No nutrition entries available.</div>
+      {% endif %}
+      
+      <p class="mt-4"><a href="{% url 'home' %}" class="btn btn-secondary">Back</a></p>
+    </div>
+    
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <img src="{% static 'images/nutrition_motivational.webp' %}" alt="Healthy Food" class="img-fluid mb-3">
+        <blockquote class="blockquote">
+          <p>"Let food be thy medicine and medicine be thy food."</p>
+          <footer class="blockquote-footer">Hippocrates</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</main>
 {% endblock %}

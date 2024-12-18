@@ -69,7 +69,6 @@ INSTALLED_APPS = [
     #my apps
     'users.apps.UsersConfig',  # Use AppConfig path
     'workouts.apps.WorkoutsConfig',
-    'progress.apps.ProgressConfig',
     'goals.apps.GoalsConfig',
     'nutrition.apps.NutritionConfig',
 ]

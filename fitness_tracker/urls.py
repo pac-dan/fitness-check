@@ -25,6 +25,5 @@ urlpatterns = [
     path('goals/', include('goals.urls', namespace='goals')),
     path('workouts/', include('workouts.urls', namespace='workouts')),
     path('nutrition/', include('nutrition.urls', namespace='nutrition')),
-    path('progress/', include('progress.urls', namespace='progress')),
     path('', views.home, name='home'),
 ]

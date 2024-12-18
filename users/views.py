@@ -4,9 +4,15 @@ from django.urls import reverse_lazy
 from .models import CustomUser
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import UserUpdateForm
 from workouts.models import Workout
 from goals.models import Goal
 from nutrition.models import Nutrition
+from django.contrib.auth import get_user_model
+from django import forms
+
+CustomUser = get_user_model()
 
 class UserListView(ListView):
     model = CustomUser
@@ -24,11 +30,14 @@ class UserCreateView(CreateView):
     template_name = 'users/user_form.html'
     success_url = reverse_lazy('users:user_list')
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = CustomUser
-    fields = ['username', 'email', 'first_name', 'last_name', 'age', 'weight', 'height']
-    template_name = 'users/user_form.html'
-    success_url = reverse_lazy('users:user_list')
+    form_class = UserUpdateForm
+    template_name = 'users/user_update.html'
+    success_url = reverse_lazy('users:profile')  # Adjust as needed
+
+    def get_object(self, queryset=None):
+        return self.request.user
 
 class UserDeleteView(DeleteView):
     model = CustomUser
@@ -40,9 +49,9 @@ def profile(request):
     user = request.user
 
     #fetch the users data
-    workouts = Workout.objects.filter(user=user).order_by('-id')[:5]
-    goals = Goal.objects.filter(user=user).order_by('-id')[:5]  
-    nutrition_entries = Nutrition.objects.filter(user=user).order_by('-id')[:5]
+    workouts = Workout.objects.filter(user=user).order_by('-id')[:3]
+    goals = Goal.objects.filter(user=user).order_by('-id')[:3]  
+    nutrition_entries = Nutrition.objects.filter(user=user).order_by('-id')[:3]
 
     context = {
         'workouts':workouts,
@@ -51,3 +60,4 @@ def profile(request):
     }
 
     return render(request, 'users/user_profile.html', context)
+

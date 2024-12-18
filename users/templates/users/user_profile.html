@@ -1,45 +1,77 @@
-{% extends "auth_base.html" %}
-{% block auth_content %}
-<h1>Welcome, {{ user.username }}!</h1>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<main class="container mt-5 mb-5">
+  <!-- Welcome Section -->
+  <div class="text-center mb-5">
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p class="text-muted">Here’s a snapshot of your recent activity and progress.</p>
+  </div>
 
-{% comment %} user data {% endcomment %}
-<h2>Your Recent Workouts</h2>
-{% if workouts %}
-  <ul>
-    {% for workout in workouts %}
-      <li>{{ workout.name }} - {{ workout.duration }} min</li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'workouts:workout_list' %}">View All Workouts</a>
-{% else %}
-  <p>No workouts logged yet.</p>
-{% endif %}
+  <!-- Dashboard Section -->
+  <div class="row">
+    <!-- Recent Workouts -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title text-center mb-3">Recent Workouts</h2>
+          {% if workouts %}
+            <ul class="list-group list-group-flush mb-3">
+              {% for workout in workouts|slice:":3" %}
+                <li class="list-group-item">{{ workout.name }} - {{ workout.duration }} min</li>
+              {% endfor %}
+            </ul>
+            <a href="{% url 'workouts:workout_list' %}" class="btn btn-primary mt-auto">View All Workouts</a>
+          {% else %}
+            <p class="text-muted text-center">No workouts logged yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
 
-<h2>Your Goals</h2>
-{% if goals %}
-  <ul>
-    {% for goal in goals %}
-      <li>{{ goal.title }} - Target: {{ goal.target }}</li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'goals:goal_list' %}">View All Goals</a>
-{% else %}
-  <p>No goals set yet.</p>
-{% endif %}
+    <!-- Your Goals -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title text-center mb-3">Your Goals</h2>
+          {% if goals %}
+            <ul class="list-group list-group-flush mb-3">
+              {% for goal in goals|slice:":3" %}
+                <li class="list-group-item">{{ goal.title }} - Target: {{ goal.target }}</li>
+              {% endfor %}
+            </ul>
+            <a href="{% url 'goals:goal_list' %}" class="btn btn-primary mt-auto">View All Goals</a>
+          {% else %}
+            <p class="text-muted text-center">No goals set yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
 
-<h2>Your Recent Nutrition Entries</h2>
-{% if nutrition_entries %}
-  <ul>
-    {% for entry in nutrition_entries %}
-      <li>{{ entry.meal_type }} - {{ entry.food_items }} ({{ entry.calories }} calories)</li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'nutrition:nutrition_list' %}">View All Nutrition Entries</a>
-{% else %}
-  <p>No nutrition entries recorded yet.</p>
-{% endif %}
-<div>
-<a href="{% url 'users:user_update' user.pk %}" class="btn btn-primary">Edit</a>
-<a href="{% url 'account_logout' %}" class="btn btn-secondary">Logout</a>
-</div>
+    <!-- Nutrition Entries -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title text-center mb-3">Nutrition Entries</h2>
+          {% if nutrition_entries %}
+            <ul class="list-group list-group-flush mb-3">
+              {% for entry in nutrition_entries|slice:":3" %}
+                <li class="list-group-item">{{ entry.meal_type|capfirst }} - {{ entry.food_items }} ({{ entry.calories }} calories)</li>
+              {% endfor %}
+            </ul>
+            <a href="{% url 'nutrition:nutrition_list' %}" class="btn btn-primary mt-auto">View All Nutrition Entries</a>
+          {% else %}
+            <p class="text-muted text-center">No nutrition entries recorded yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="text-center mt-4">
+    <a href="{% url 'users:user_update' user.pk %}" class="btn btn-primary me-2">Edit Profile</a>
+    <a href="{% url 'account_logout' %}" class="btn btn-secondary">Logout</a>
+  </div>
+</main>
 {% endblock %}

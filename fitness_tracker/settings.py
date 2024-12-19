@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') 
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS') 
 
 SITE_ID = 1 # Required for django-allauth
 

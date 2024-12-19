@@ -35,12 +35,17 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [
-    'https://fitness-tracker-project-b28eeb139905.herokuapp.com/',
+    'fitness-tracker-project-b28eeb139905.herokuapp.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://fitness-tracker-project-b28eeb139905.herokuapp.com',
     'https://www.fitness-tracker-project-b28eeb139905.herokuapp.com',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://fitness-tracker-project-b28eeb139905.herokuapp.com",
 ]
 
 SITE_ID = 1 # Required for django-allauth

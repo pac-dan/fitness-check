@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 import environ
 from pathlib import Path
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,14 +32,11 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-@l@lqs3c_$qrjs4zn@$!7pb50(y54j4=2_+y$(3fo!9dgn6-+a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [
-    '127.0.0.1', 
-    'localhost',
-]   
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') 
 
-SITE_ID = 1
+SITE_ID = 1 # Required for django-allauth
 
 # Application definition
 
@@ -188,9 +186,9 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # django-allauth settings
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
 
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_CONFIRM_EMAIL_ON_GET = False
 
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
@@ -199,6 +197,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL = 'users:profile'
 
 ACCOUNT_LOGIN_REDIRECT_URL = 'users:profile'
+
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') # Heroku
+SECURE_SSL_REDIRECT = True 
+SESSION_COOKIE_SECURE = True 
+CSRF_COOKIE_SECURE = True 
 
 
 

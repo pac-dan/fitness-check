@@ -34,7 +34,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS') 
+ALLOWED_HOSTS = [
+    'https://fitness-tracker-project-b28eeb139905.herokuapp.com/',
+]
 
 SITE_ID = 1 # Required for django-allauth
 

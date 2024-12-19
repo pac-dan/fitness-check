@@ -38,6 +38,11 @@ ALLOWED_HOSTS = [
     'https://fitness-tracker-project-b28eeb139905.herokuapp.com/',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://fitness-tracker-project-b28eeb139905.herokuapp.com',
+    'https://www.fitness-tracker-project-b28eeb139905.herokuapp.com',
+]
+
 SITE_ID = 1 # Required for django-allauth
 
 # Application definition

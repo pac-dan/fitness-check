@@ -2,7 +2,7 @@
 
 Fitness Diary is a full-stack web application designed to help users record their fitness goals, log workouts, and track nutritional intake. Built with Django, HTML, CSS, and Bootstrap, this application showcases comprehensive CRUD (Create, Read, Update, Delete) operations within a user-friendly interface. 
 
-# Table of Contents
+**Table of Contents**
 - Project Overview
 - Features
 - Technology Stack
@@ -16,17 +16,16 @@ Fitness Diary is a full-stack web application designed to help users record thei
 - Deployment
 - Data Schema
 - Security
-- Contributing
 - Contact
 - Screenshots
 - UX Design Documentation
 - Performance Optimization
 - Additional Documentation
 
-## Project Overview 
+**Project Overview** 
 Fitness Diary aims to provide users with a centralized platform to record and achieve their fitness objectives. Whether it's increasing daily steps, logging workouts, or managing nutritional intake, Fitness Diary is a way to digitally record your fitness journey so you can see improvement and encourage yourself to continue.
 
-### Features 
+## Features 
 - User Registration & Authentication:
     - Secure user sign-up and login functionalities using django-allauth.
     - Profile management.
@@ -50,7 +49,16 @@ Fitness Diary aims to provide users with a centralized platform to record and ac
 - Real-Time Feedback:
     - Immediate reflections of CRUD operations in the user interface.
 
-####  Technology Stack
+## Testing
+
+Ensuring the reliability and robustness of Fitness Diary through comprehensive testing.
+
+### Manual Testing
+- **User Flow Testing**: Verified all user flows, including registration, goal setting, workout logging, and nutrition tracking.
+- **Responsive Design Testing**: Ensured the application is responsive across various devices and screen sizes.
+- **Accessibility Testing**: Checked compliance with accessibility standards using tools like WAVE and Lighthouse.
+
+## Technology Stack
 - Backend:
     - Python 
     - Django
@@ -68,33 +76,96 @@ Fitness Diary aims to provide users with a centralized platform to record and ac
     - Crispy Forms
     - Debug Toolbar
 
-##### Agile Methodology 
+## Agile Methodology 
 Fitness Diary was developed using the Agile methodology, ensuring iterative progress and adaptability throughout the project lifecycle.
+
+**Link to Github Projects** - https://github.com/users/pac-dan/projects/1
+- You can view the comprehensive Agile board for Fitness Diary here. This board includes all project Epics, User Stories, tasks and progress tracking.
+- Epics and User Stories: Clearly defined Epics broken down into actionable User Stories, each addressing specific functionalities and requirements of the application
+- Task Tracking: Real-time updates on task statuses (To Do, In Progress, Done) to monitor development progress and identify any bottlenecks.
 
 **User Stories**
 
-- Epic 1: User Management
-    - As a user, I want to register and log in so that I can securely access my fitness data.
-    - As a user, I want to update my profile information to keep my account details current.
+### User Stories
 
-- Epic 2: Goals Management
-    - As a user, I want to create fitness goals so that I have targets to achieve.
-    - As a user, I want to view my goals to track my progress.
-    - As a user, I want to update or delete my goals as my objectives change.
+**Epic 1: User Management**
+  - As a user, I want to register and log in so that I can securely access my fitness data.
+  - As a user, I want to update my profile information to keep my account details current.
 
-- Epic 3: Workouts Logging
-    - As a user, I want to log my workouts to monitor my exercise routines.
-    - As a user, I want to view my workout history to analyze my performance over time.
-    - As a user, I want to update or delete my workouts as my objectives change.
+**Epic 2: Goals Management**
+  - As a user, I want to create fitness goals so that I have targets to achieve.
+  - As a user, I want to view my goals to track my progress.
+  - As a user, I want to update or delete my goals as my objectives change.
 
-- Epic 4: Nutrition Logging
-    - As a user, I want to log my meals to track my nutritional intake.
-    - As a user, I want to view my nutrition history to manage my diet effectively.
-    - As a user, I want to update or delete my nutrition logs as my objectives change.
+**Epic 3: Workouts Logging**
+  - As a user, I want to log my workouts to monitor my exercise routines.
+  - As a user, I want to view my workout history to analyze my performance over time.
+  - As a user, I want to update or delete my workouts as my objectives change.
 
-###### Epics to User Stories Mapping
+**Epic 4: Nutrition Logging**
+  - As a user, I want to log my meals to track my nutritional intake.
+  - As a user, I want to view my nutrition history to manage my diet effectively.
+  - As a user, I want to update or delete my nutrition logs as my objectives change.
 
-Each epic was broken down into specific user stories to streamline development and ensure all functionalities were covered comprehensively.
+### Epics to User Stories Mapping
+
+| **Epic**               | **User Stories**                                                                                                                                                    |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **User Management**    | - As a user, I want to register and log in so that I can securely access my fitness data.<br>- As a user, I want to update my profile information to keep my account details current. |
+| **Goals Management**   | - As a user, I want to create fitness goals so that I have targets to achieve.<br>- As a user, I want to view my goals to track my progress.<br>- As a user, I want to update or delete my goals as my objectives change. |
+| **Workouts Logging**   | - As a user, I want to log my workouts to monitor my exercise routines.<br>- As a user, I want to view my workout history to analyze my performance over time.<br>- As a user, I want to update or delete my workouts as my objectives change. |
+| **Nutrition Logging**  | - As a user, I want to log my meals to track my nutritional intake.<br>- As a user, I want to view my nutrition history to manage my diet effectively.<br>- As a user, I want to update or delete my nutrition logs as my objectives change. |
+
+
+**UX Design Documentation**
+
+Add a section to document your UX design process, including wireframes and design decisions.
+
+## UX Design Documentation
+
+### Design Process
+The design of Fitness Diary focused on creating a user-friendly and accessible interface without formal wireframes. Key considerations included:
+
+- **User-Centric Layout:** Organized the application into intuitive sections: Dashboard, Goals, Workouts, Nutrition, and Profile.
+- **Consistent Navigation:** Implemented a consistent header and sidebar for easy navigation across different sections.
+- **Responsive Design:** Utilized Bootstrap 5 to ensure the application is fully responsive on all devices.
+- **Accessibility:** Followed WCAG guidelines to make the application accessible to users with disabilities.
+
+### Design Decisions
+- **Clean and Minimalistic Design:** Chose a minimalistic approach to reduce clutter and help users focus on their fitness tracking.
+- **Real-Time Feedback:** Ensured that CRUD operations provide immediate feedback to enhance user experience.
+- **Mobile-First Approach:** Prioritized mobile responsiveness to cater to users who prefer accessing the application on-the-go.
+
+### Visual Representations
+I also used physical diagrams for the simple design layout and using bootstrap for layout and design it was super easy to get the website layout, i kept the design very simple not to complicate the view of the page.
+
+While formal wireframes are not provided, the following annotated screenshots illustrate the final design and layout of the application:
+
+- **Home Page**
+  ![Home Page](static\images\home.png)(static\images\home.png)
+  *Annotation: The home page features a dashboard overview with quick access to goals, workouts, and nutrition sections.*
+
+- **Goals Page**
+  ![Goals Page](static\images\goals.png)
+  *Annotation: Users can create, view, update, and delete their fitness goals. Progress is tracked with visual indicators.*
+
+- **Workout Page**
+  ![Workout Page](static\images\workouts.png)
+  *Annotation: The workout logging interface allows users to input workout details and view their workout history.*
+
+- **Nutrition Page**
+  ![Nutrition Page](static\images\nutrition.png)
+  *Annotation: Users can log their meals, track caloric intake, and manage dietary plans.*
+
+- **User Profile Page**
+  ![User Profile Page](static\images\user_profile_page.png)
+  *Annotation: Profile management section where users can update their personal information and preferences.*
+
+### Alignment with User Stories
+Each design decision aligns with specific user stories to ensure that the application meets user needs effectively. For example:
+
+- **User-Centric Layout** aligns with the user story: *"As a user, I want to view my goals to track my progress."*
+- **Real-Time Feedback** supports: *"As a user, I want to log my workouts to monitor my exercise routines."*
 
 **Installation**
 - Prerequisites 
@@ -104,7 +175,7 @@ Each epic was broken down into specific user stories to streamline development a
 
 **Steps**
 - Clone the Repository:
-    - git clone https://github.com/yourusername/Fitness_Diary.git
+    - git clone https://github.com/pac-dan/fitness-check.git
       cd Fitness_Diary
 
 - Create Virtual Environment:
@@ -258,8 +329,7 @@ For any inquiries or feedback, please contact djjohnston98@hotmail.com
 - Lazy Loading: Images and resources are loaded lazily to improve initial page load performance.
 
 **Final Notes**
- 
-**Additional Documentation**
+- Thank you for reviewing my project, I really enjoyed using the class based views and learning so much in this stage of the course, I hope it was okay to use class based functions as i was told mixed things.
 
 **Future Enhancements**
 - **Data Analysis:** Implement data visualization tools to analyze user data and track progress.
@@ -267,3 +337,7 @@ For any inquiries or feedback, please contact djjohnston98@hotmail.com
 - **Notifications:** Add notifications to alert users when they complete a task or reach a milestone.
 - **Mobile Application:** Develop a mobile version of Fitness Diary for on-the-go access.
 - **Integration with Wearables:** Connect Fitness Diary with wearable devices to automatically log fitness data.
+
+**Links**
+- Visit https://fitness-tracker-project-b28eeb139905.herokuapp.com/ in your browser.
+- Link to Github Projects https://github.com/users/pac-dan/projects/1

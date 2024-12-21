@@ -48,12 +48,12 @@ CORS_ALLOWED_ORIGINS = [
     "https://fitness-tracker-project-b28eeb139905.herokuapp.com",
 ]
 
-SITE_ID = 1 # Required for django-allauth
+SITE_ID = 1  # Required for django-allauth
 
 # Application definition
 
 INSTALLED_APPS = [
-    #default apps
+    # default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',  # Required for django-allauth
 
     # Third-party apps
-    'rest_framework.authtoken',       # Django REST Framework Token Authentication
+    'rest_framework.authtoken',       # Django REST Framework Token 
     'rest_framework',                 # Django REST Framework
     'corsheaders',                    # CORS handling
     'crispy_forms',                   # Django Crispy Forms
@@ -213,11 +213,7 @@ ACCOUNT_LOGIN_REDIRECT_URL = 'users:profile'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') # Heroku
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Heroku
 SECURE_SSL_REDIRECT = True 
 SESSION_COOKIE_SECURE = True 
-CSRF_COOKIE_SECURE = True 
-
-
-
-
+CSRF_COOKIE_SECURE = True  

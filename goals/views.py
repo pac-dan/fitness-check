@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from .models import Goal
 from .forms import GoalForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib import messages
 
 class GoalListView(LoginRequiredMixin, ListView):
     model = Goal
@@ -29,7 +30,12 @@ class GoalCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.success(self.request, 'Goal created successfully!')
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Error creating goal. Please check the form.')
+        return super().form_invalid(form)
 
 class GoalUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Goal
@@ -41,6 +47,14 @@ class GoalUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         goal = self.get_object()
         return goal.user == self.request.user
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Goal updated successfully!')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Error updating goal. Please check the form.')
+        return super().form_invalid(form)
+
 class GoalDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Goal
     template_name = 'goals/goal_confirm_delete.html'
@@ -49,3 +63,7 @@ class GoalDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         goal = self.get_object()
         return goal.user == self.request.user
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'Goal deleted successfully!')
+        return super().delete(request, *args, **kwargs)

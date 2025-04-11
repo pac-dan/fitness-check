@@ -32,20 +32,17 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'fitness-tracker-project-b28eeb139905.herokuapp.com',
+    'localhost',
+    '127.0.0.1',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://fitness-tracker-project-b28eeb139905.herokuapp.com',
     'https://www.fitness-tracker-project-b28eeb139905.herokuapp.com',
-]
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://fitness-tracker-project-b28eeb139905.herokuapp.com",
 ]
 
 SITE_ID = 1  # Required for django-allauth
@@ -122,13 +119,21 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
 
 
 # Password validation
@@ -195,6 +200,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Django Crispy Forms settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://localhost:8000",
+    "https://fitness-tracker-project-b28eeb139905.herokuapp.com",
 ]
 
 # django-allauth settings
@@ -213,7 +220,30 @@ ACCOUNT_LOGIN_REDIRECT_URL = 'users:profile'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Heroku
-SECURE_SSL_REDIRECT = True 
-SESSION_COOKIE_SECURE = True 
-CSRF_COOKIE_SECURE = True  
+# Security Settings
+if DEBUG:
+    # Development settings
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    SECURE_BROWSER_XSS_FILTER = False
+    SECURE_CONTENT_TYPE_NOSNIFF = False
+    SECURE_HSTS_SECONDS = 0
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+    SECURE_HSTS_PRELOAD = False
+else:
+    # Production settings
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+
+# Remove or comment out these lines if they exist elsewhere in the file
+# SECURE_SSL_REDIRECT = False
+# SESSION_COOKIE_SECURE = False
+# CSRF_COOKIE_SECURE = False
+ 

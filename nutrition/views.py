@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from .models import Nutrition
 from .forms import NutritionForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib import messages
 
 class NutritionListView(LoginRequiredMixin, ListView):
     model = Nutrition
@@ -15,7 +16,7 @@ class NutritionListView(LoginRequiredMixin, ListView):
 class NutritionDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Nutrition
     template_name = 'nutrition/nutrition_detail.html'
-    context_object_name = 'nutrition_entry'
+    context_object_name = 'nutrition'
 
     def test_func(self):
         nutrition = self.get_object()
@@ -29,7 +30,12 @@ class NutritionCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.success(self.request, 'Nutrition entry created successfully!')
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Error creating nutrition entry. Please check the form.')
+        return super().form_invalid(form)
 
 class NutritionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Nutrition
@@ -41,6 +47,14 @@ class NutritionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         nutrition = self.get_object()
         return nutrition.user == self.request.user
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Nutrition entry updated successfully!')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Error updating nutrition entry. Please check the form.')
+        return super().form_invalid(form)
+
 class NutritionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Nutrition
     template_name = 'nutrition/nutrition_confirm_delete.html'
@@ -49,3 +63,7 @@ class NutritionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         nutrition = self.get_object()
         return nutrition.user == self.request.user
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'Nutrition entry deleted successfully!')
+        return super().delete(request, *args, **kwargs)

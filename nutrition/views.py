@@ -30,11 +30,13 @@ class NutritionCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        messages.success(self.request, 'Nutrition entry created successfully!')
+        messages.success(self.request, 
+                       'Nutrition entry created successfully!')
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Error creating nutrition entry. Please check the form.')
+        messages.error(self.request, 
+                     'Error creating nutrition entry. Please check the form.')
         return super().form_invalid(form)
 
 class NutritionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -48,11 +50,13 @@ class NutritionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return nutrition.user == self.request.user
 
     def form_valid(self, form):
-        messages.success(self.request, 'Nutrition entry updated successfully!')
+        messages.success(self.request, 
+                       'Nutrition entry updated successfully!')
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Error updating nutrition entry. Please check the form.')
+        messages.error(self.request, 
+                     'Error updating nutrition entry. Please check the form.')
         return super().form_invalid(form)
 
 class NutritionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -65,5 +69,6 @@ class NutritionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return nutrition.user == self.request.user
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request, 'Nutrition entry deleted successfully!')
+        messages.success(self.request, 
+                       'Nutrition entry deleted successfully!')
         return super().delete(request, *args, **kwargs)

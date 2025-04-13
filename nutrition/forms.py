@@ -1,13 +1,12 @@
 from django import forms
 from .models import Nutrition
 
-from django import forms
-from .models import Nutrition
 
 class NutritionForm(forms.ModelForm):
     class Meta:
         model = Nutrition
-        fields = ['meal_type', 'food_items', 'calories', 'protein', 'carbs', 'fats', 'notes']
+        fields = ['meal_type', 'food_items', 'calories', 'protein', 
+                 'carbs', 'fats', 'notes']
 
         labels = {
             'meal_type': 'Meal Type',
@@ -41,16 +40,19 @@ class NutritionForm(forms.ModelForm):
             'protein': forms.NumberInput(attrs={
                 'class': 'form-control',
                 'step': 'any',
+                'min': '0',
                 'placeholder': 'e.g., 20'
             }),
             'carbs': forms.NumberInput(attrs={
                 'class': 'form-control',
                 'step': 'any',
+                'min': '0',
                 'placeholder': 'e.g., 40'
             }),
             'fats': forms.NumberInput(attrs={
                 'class': 'form-control',
                 'step': 'any',
+                'min': '0',
                 'placeholder': 'e.g., 15'
             }),
             'notes': forms.Textarea(attrs={

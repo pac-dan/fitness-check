@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
+from django.core.validators import MinValueValidator
 
 class Nutrition(models.Model):
     user = models.ForeignKey(
@@ -17,9 +18,18 @@ class Nutrition(models.Model):
     ])
     food_items = models.TextField(help_text="List of food items consumed")
     calories = models.PositiveIntegerField(help_text="Total calories consumed")
-    protein = models.FloatField(help_text="Protein intake in grams")
-    carbs = models.FloatField(help_text="Carbohydrate intake in grams")
-    fats = models.FloatField(help_text="Fat intake in grams")
+    protein = models.FloatField(
+        help_text="Protein intake in grams",
+        validators=[MinValueValidator(0.0, message="Protein must be a positive number")]
+    )
+    carbs = models.FloatField(
+        help_text="Carbohydrate intake in grams",
+        validators=[MinValueValidator(0.0, message="Carbohydrates must be a positive number")]
+    )
+    fats = models.FloatField(
+        help_text="Fat intake in grams",
+        validators=[MinValueValidator(0.0, message="Fats must be a positive number")]
+    )
     date = models.DateField(auto_now_add=True)
     notes = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
